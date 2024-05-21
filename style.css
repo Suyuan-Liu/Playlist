@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap');
+
+body {
+  font-family: 'Comic Neue', cursive;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  background-image: url('background.webp'); /* 替换为你的背景图 */
+  background-size: cover;
+  background-position: center;
+  /* background-color: #ffe4e1;  淡粉色背景 */
+}
+
+.header {
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  background-color: rgba(255, 228, 225, 0.8);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.profile-card {
+  display: inline-block;
+  padding: 20px; /* 恢复初始尺寸 */
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  font-size: 18px;
+  border: 2px solid #ffa07a; /* 添加边框 */
+  border-radius: 10px; /* 添加圆角 */
+}
+
+.profile-card img {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  float: left;
+  margin-right: 15px;
+}
+
+.profile-card div {
+  display: inline-block;
+}
+
+.slideshow-container {
+  margin: 20px auto;
+  width: 80%;
+  max-width: 500px;
+  position: relative;
+  height: 300px; /* 设置一个固定高度 */
+  perspective: 1000px; /* 设置3D效果 */
+  overflow: hidden;
+  border: 2px solid #ffa07a; /* 添加边框 */
+  border-radius: 10px; /* 添加圆角 */
+}
+
+.slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden; /* 隐藏背面 */
+  transform-style: preserve-3d;
+  transition: transform 1s ease-in-out;
+}
+
+.playlist-container {
+  margin: 20px auto;
+  width: 80%;
+  text-align: center;
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.search-box {
+  width: 50%;
+  margin: 10px auto;
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #ffa07a;
+  border-radius: 10px;
+  outline: none;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 16px;
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+th, td {
+  padding: 10px;
+  border: 1px solid #ffa07a;
+  text-align: left;
+}
+
+th {
+  cursor: pointer;
+  position: relative;
+  background-color: #ffdab9;
+}
+
+th::after {
+  content: '';
+  position: absolute;
+  right: 10px;
+  width: 24px;
+  height: 24px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+th.asc::after {
+  background-image: url('asc-icon.png'); /* 替换为你的正序图标 */
+}
+
+th.desc::after {
+  background-image: url('desc-icon.png'); /* 替换为你的倒序图标 */
+}
+
+th.active {
+  background-color: #ffa07a;
+}
+
+tr:nth-child(even) {
+  background-color: #ffebcd;
+}
+
+tr:hover {
+  background-color: #ffdead;
+}
