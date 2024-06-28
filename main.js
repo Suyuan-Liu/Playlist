@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const style = document.createElement('style');
     style.textContent = `
         .highlight {
-            background-color: yellow !important;
+            background color: yellow! important;
         }
         .enlarge {
             animation: enlargeAnimation 5s forwards;
