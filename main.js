@@ -53,13 +53,11 @@ document.addEventListener('DOMContentLoaded', () => {
         slideIndex = (slideIndex + 1) % slides.length;
     };
     showSlides();
-    setInterval(showSlides, 3000); // 每3秒切换一次图片
+    setInterval(showSlides, 3000);
 
-    // 防止重复点击的标志变量
     let isCopying = false;
     let isRandomPlaying = false;
 
-    // 添加点击复制功能，只绑定一次事件
     const rows = tbody.querySelectorAll('tr');
     rows.forEach(row => {
         row.addEventListener('click', (event) => {
@@ -86,13 +84,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 添加点击跳转功能
     const profileCard = document.querySelector('.profile-card');
     profileCard.addEventListener('click', () => {
-        window.open('https://live.bilibili.com/1967341768?broadcast_type=0&is_room_feed=0&spm_id_from=333.999.to_liveroom.0.click&live_from=86002', '_blank'); // 替换为你想要的链接
+        window.open('https://live.bilibili.com/1967341768?broadcast_type=0&is_room_feed=0&spm_id_from=333.999.to_liveroom.0.click&live_from=86002', '_blank'); 
     });
 
-    // 随便听听功能
     const randomPlayButton = document.querySelector('.random-play');
     randomPlayButton.addEventListener('click', (event) => {
         if (isRandomPlaying) return;
@@ -108,21 +104,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
         navigator.clipboard.writeText(textToCopy).then(() => {
             alert(`已复制: ${textToCopy}`);
-            // 将选中的行高亮并放大显示
             rows.forEach(row => row.classList.remove('highlight', 'enlarge'));
             selectedRow.classList.add('highlight', 'enlarge');
             selectedRow.scrollIntoView({ behavior: 'smooth', block: 'center' });
             setTimeout(() => {
                 selectedRow.classList.remove('highlight', 'enlarge');
                 isRandomPlaying = false;
-            }, 5000); // 5秒后移除高亮和放大效果
+            }, 5000);
         }).catch(err => {
             console.error('复制失败: ', err);
             isRandomPlaying = false;
         });
     });
 
-    // 高亮显示样式
     const style = document.createElement('style');
     style.textContent = `
         .highlight {
@@ -139,7 +133,6 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
     document.head.append(style);
 
-    // 回到顶部按钮功能
     const backToTopButton = document.getElementById('back-to-top');
 
     window.addEventListener('scroll', () => {
