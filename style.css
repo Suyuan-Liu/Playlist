@@ -98,7 +98,7 @@ body {
   cursor: pointer;
 }
 
-.random-play:hover {
+.random-play: hover {
   background-color: #ff7f50;
 }
 
@@ -142,7 +142,7 @@ th.desc::after {
   background-image: url('desc-icon.png');
 }
 
-th.active {
+the. active {
   background-color: #ffa07a;
 }
 
@@ -150,12 +150,12 @@ tr:nth-child(even) {
   background-color: #ffebcd;
 }
 
-tr:hover {
+tr: hover {
   background-color: #ffdead;
 }
 
 .highlight {
-  background-color: yellow !important;
+  background-color: yellow ! important;
 }
 
 .copyright {
