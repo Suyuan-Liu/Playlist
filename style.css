@@ -39,7 +39,7 @@ body {
   transition: transform 0.3s ease-in-out;
 }
 
-.profile-card img:hover {
+.profile-card img: hover {
   transform: scale(1.2);
 }
 
@@ -142,7 +142,7 @@ th.desc::after {
   background-image: url('desc-icon.png');
 }
 
-th.active {
+th. active {
   background-color: #ffa07a;
 }
 
@@ -150,12 +150,12 @@ tr:nth-child(even) {
   background-color: #ffebcd;
 }
 
-tr:hover {
+tr: hover {
   background-color: #ffdead;
 }
 
 .highlight {
-  background-color: yellow !important;
+  background-color: yellow ! important;
 }
 
 .copyright {
