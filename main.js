@@ -54,4 +54,103 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     showSlides();
     setInterval(showSlides, 3000); // 每3秒切换一次图片
+
+    // 防止重复点击的标志变量
+    let isCopying = false;
+    let isRandomPlaying = false;
+
+    // 添加点击复制功能，只绑定一次事件
+    const rows = tbody.querySelectorAll('tr');
+    rows.forEach(row => {
+        row.addEventListener('click', (event) => {
+            if (isCopying) return;
+            isCopying = true;
+            event.stopImmediatePropagation();
+            copySongInfo(event);
+            setTimeout(() => {
+                isCopying = false;
+            }, 1000);
+        });
+    });
+
+    function copySongInfo(event) {
+        const cells = event.currentTarget.querySelectorAll('td');
+        const title = cells[1].textContent.trim();
+        const artist = cells[2].textContent.trim();
+        const textToCopy = `点歌《${title}》- ${artist}`;
+
+        navigator.clipboard.writeText(textToCopy).then(() => {
+            alert(`已复制: ${textToCopy}`);
+        }).catch(err => {
+            console.error('复制失败: ', err);
+        });
+    }
+
+    // 添加点击跳转功能
+    const profileCard = document.querySelector('.profile-card');
+    profileCard.addEventListener('click', () => {
+        window.open('https://live.bilibili.com/1967341768?broadcast_type=0&is_room_feed=0&spm_id_from=333.999.to_liveroom.0.click&live_from=86002', '_blank'); // 替换为你想要的链接
+    });
+
+    // 随便听听功能
+    const randomPlayButton = document.querySelector('.random-play');
+    randomPlayButton.addEventListener('click', (event) => {
+        if (isRandomPlaying) return;
+        isRandomPlaying = true;
+        event.stopImmediatePropagation();
+        const rows = document.querySelectorAll('#playlist tbody tr');
+        const randomIndex = Math.floor(Math.random() * rows.length);
+        const selectedRow = rows[randomIndex];
+        const cells = selectedRow.querySelectorAll('td');
+        const title = cells[1].textContent.trim();
+        const artist = cells[2].textContent.trim();
+        const textToCopy = `点歌《${title}》- ${artist}`;
+
+        navigator.clipboard.writeText(textToCopy).then(() => {
+            alert(`已复制: ${textToCopy}`);
+            // 将选中的行高亮并放大显示
+            rows.forEach(row => row.classList.remove('highlight', 'enlarge'));
+            selectedRow.classList.add('highlight', 'enlarge');
+            selectedRow.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            setTimeout(() => {
+                selectedRow.classList.remove('highlight', 'enlarge');
+                isRandomPlaying = false;
+            }, 5000); // 5秒后移除高亮和放大效果
+        }).catch(err => {
+            console.error('复制失败: ', err);
+            isRandomPlaying = false;
+        });
+    });
+
+    // 高亮显示样式
+    const style = document.createElement('style');
+    style.textContent = `
+        .highlight {
+            background-color: yellow !important;
+        }
+        .enlarge {
+            animation: enlargeAnimation 5s forwards;
+        }
+        @keyframes enlargeAnimation {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+    `;
+    document.head.append(style);
+
+    // 回到顶部按钮功能
+    const backToTopButton = document.getElementById('back-to-top');
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            backToTopButton.style.display = 'block';
+        } else {
+            backToTopButton.style.display = 'none';
+        }
+    });
+
+    backToTopButton.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
 });
